@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-import HeaderHN from './components/HeaderHN'
-import ListItemsHN from './components/ListItemsHN.js'
-import FooterHN from './components/FooterHN'
-import axios from 'axios'
-import './App.css'
 
-const MainBox = styled.div`
-  background-color: #ededed;
-`
+import HeaderHN from './components/Header/HeaderHN'
+import ListItemsHN from './components/ListItems/ListItemsHN.js'
+import FooterHN from './components/Footer/FooterHN'
+import axios from 'axios'
+import { MainBox } from './AppStyle.js'
 
 class App extends Component {
   constructor(props) {
