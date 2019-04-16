@@ -4,9 +4,9 @@ import { FooterBox, Button, Line } from './footerStyle'
 const Footer = ({prev, more}) => {
     return (
         <FooterBox>
-            <Button>Prev</Button>
+            <Button onClick={prev}>Prev</Button>
             <Line>|</Line>         
-            <Button>More</Button>
+            <Button onClick={more}>More</Button>
         </FooterBox>
     )
 }

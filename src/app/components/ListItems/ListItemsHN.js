@@ -1,6 +1,5 @@
 import React from 'react'
 import Item from '../Item/ItemHN'
-import { Box } from './listItems'
 
 const obj = {
     key: 1,
@@ -13,13 +12,10 @@ const obj = {
     url: "lwn.net",
 }
 
-const ListItemsHN = (props) => {
-    return (
-        <Box>
-            <Item item={obj}/>
-            <Item item={obj}/>
-        </Box>
-    )
+const ListItemsHN = ({itemsArr}) => {
+    console.log("itemsArr",itemsArr)
+    let itemsList = itemsArr.map(obj=><Item item={obj}/>)
+    return itemsList
 }
 
 export default ListItemsHN

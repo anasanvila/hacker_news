@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
-
 import HeaderHN from './components/Header/HeaderHN'
-import ListItemsHN from './components/ListItems/ListItemsHN.js'
+import ListItemsHN from './components/ListItems/ListItemsHN'
 import FooterHN from './components/Footer/FooterHN'
 import axios from 'axios'
-import { MainBox } from './AppStyle.js'
+import { MainBox } from './AppStyle'
 
 class App extends Component {
   constructor(props) {
-    super(props);
-
+    super(props)
     this.state = {
       data: [],
       item: {}
-    };
+    }
   }
 
   getListOfBestStories(){
@@ -50,13 +48,44 @@ class App extends Component {
   refresh(){
     console.log("refresh")
   }
+  
+  prev() {
+    console.log("prev")
+  }
 
+  more() {
+    console.log("more")
+  }
+  
+  itemsArr = ([
+    {
+      key: 1,
+      id: 8863,
+      by: "justin",
+      score: 21,
+      kids: [8952, 9224, 8917],
+      time: 1210981217,
+      title: "Justin.tv is biggest",
+      url: "lwn.net",
+    }, 
+    {
+      key: 5,
+      id: 8863,
+      by: "ana",
+      score: 30,
+      kids: [8952, 9224, 8917],
+      time: 1314211127,
+      title: "Anna.tv is better",
+      url: "lwn.net",
+    }
+  ])
+  
   render() {
     return (
           <MainBox>
              <HeaderHN refresh={this.refresh} />
-             <ListItemsHN />
-             <FooterHN />
+             <ListItemsHN itemsArr={this.itemsArr}/>
+             <FooterHN prev={this.prev} more={this.more}/>
           </MainBox>
     );
   }
