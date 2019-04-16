@@ -10,7 +10,8 @@ class App extends Component {
     super(props)
     this.state = {
       data: [],
-      item: {}
+      item: {},
+      itemsArr: [],
     }
   }
 
@@ -24,6 +25,7 @@ class App extends Component {
       }
     }).then(result=>{
       this.setState({ data: result.data })
+      this.createItemsArray(result.data)
     });
   }
 
@@ -38,6 +40,30 @@ class App extends Component {
     }).then(result=>{
       this.setState({ item: result.data })
     });
+  }
+
+  createItemsArray(data){
+    let itemsArray = [{
+      key: 1,
+      id: 8863,
+      by: "justin",
+      score: 21,
+      kids: [8952, 9224, 8917],
+      time: 1210981217,
+      title: "Justin.tv is biggest",
+      url: "lwn.net",
+    }, 
+    {
+      key: 5,
+      id: 8863,
+      by: "ana",
+      score: 30,
+      kids: [8952, 9224, 8917],
+      time: 1314211127,
+      title: "Anna.tv is better",
+      url: "lwn.net",
+    }]
+    this.setState({itemsArr: itemsArray})
   }
 
   componentDidMount() {
@@ -57,36 +83,14 @@ class App extends Component {
     console.log("more")
   }
   
-  itemsArr = ([
-    {
-      key: 1,
-      id: 8863,
-      by: "justin",
-      score: 21,
-      kids: [8952, 9224, 8917],
-      time: 1210981217,
-      title: "Justin.tv is biggest",
-      url: "lwn.net",
-    }, 
-    {
-      key: 5,
-      id: 8863,
-      by: "ana",
-      score: 30,
-      kids: [8952, 9224, 8917],
-      time: 1314211127,
-      title: "Anna.tv is better",
-      url: "lwn.net",
-    }
-  ])
-  
   render() {
+
     return (
-          <MainBox>
-             <HeaderHN refresh={this.refresh} />
-             <ListItemsHN itemsArr={this.itemsArr}/>
-             <FooterHN prev={this.prev} more={this.more}/>
-          </MainBox>
+      <MainBox>
+        <HeaderHN refresh={this.refresh} />
+        <ListItemsHN itemsArr={this.state.itemsArr}/>
+        <FooterHN prev={this.prev} more={this.more}/>
+      </MainBox>
     );
   }
 }
