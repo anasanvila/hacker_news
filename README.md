@@ -5,6 +5,6 @@ Na zadatku se vidi:
 - Prikazuje se lista narednih 20 postova kada se klikne na dugme "more"
 - Da bi se vratili na prethodno stanje, klikne se dugme "prev"
 - Automatski osvezava listu postova na svakih 30 sekundi
-- Osvezava listu klikom na refresh dugme u Headeru
+- Osvezava listu klikom na "refresh" dugme u Headeru
 - Link ka Useru otvara userovu stranicu na Hacker News sajtu
 - Link ka Comments otvara komentare vezane za taj post na Hacker News sajtu
