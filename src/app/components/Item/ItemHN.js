@@ -8,7 +8,7 @@ const NumberOfComments = ({kids}) => {
     return length
 }
 
-const ItemHN = ({item}) => {
+const ItemHN = ({item, itemID, userID}) => {
     return (
         <ItemBox>
             <Row>
@@ -22,10 +22,14 @@ const ItemHN = ({item}) => {
                 <Description>
                     {`${item.score} points `} 
                     <Gray>by</Gray>
-                    {` ${item.by} `} 
+                    <a target="_blank" href={`https://news.ycombinator.com/user?id=${userID}`}>
+                        {` ${item.by} `}
+                    </a>
                     <Gray><Time time={item.time}/></Gray>
                     <LineInItem>|</LineInItem>
-                    <NumberOfComments kids={item.kids}/> comments
+                    <a target="_blank" href={`https://news.ycombinator.com/item?id=${itemID}`}>
+                        <NumberOfComments kids={item.kids}/> comments
+                    </a> 
                 </Description>                
             </Row>
         </ItemBox>

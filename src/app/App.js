@@ -15,6 +15,7 @@ class App extends Component {
       itemsArr: [],
       num: 1,
       limit: 20,
+      interval: null,
     }
     this.prev = this.prev.bind(this)
     this.more = this.more.bind(this)
@@ -61,10 +62,17 @@ class App extends Component {
 
   componentDidMount() {
     this.getListOfBestStories(this.state.limit)
+    const myInterval = setInterval(this.refresh, 30000)
+    this.setState({interval: myInterval})
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.state.interval)
   }
 
   refresh(){
     console.log("this.state.limit", this.state.limit)
+    console.log("refreshing")
     const newNum = 1
     this.setState({num: newNum, item: {}, itemsArr: []})
     this.getListOfBestStories(this.state.limit)
@@ -93,13 +101,13 @@ class App extends Component {
   }
   
   render() {
-    //{console.log(this.state.listID)}
+    //{console.log(this.state.listID)}    
     return (
       // <div className="App">
       //   <header className="App-header">
           <MainBox>
             <HeaderHN refresh={this.refresh} />
-            <ListItemsHN itemsArr={this.state.itemsArr}/>
+            <ListItemsHN itemsArr={this.state.itemsArr} />
             <FooterHN prev={this.prev} more={this.more}/>
           </MainBox>
       //   </header>
