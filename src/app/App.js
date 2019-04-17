@@ -71,15 +71,15 @@ class App extends Component {
   }
 
   refresh(){
-    console.log("this.state.limit", this.state.limit)
-    console.log("refreshing")
+    //console.log("this.state.limit", this.state.limit)
+    //console.log("refreshing")
     const newNum = 1
     this.setState({num: newNum, item: {}, itemsArr: []})
     this.getListOfBestStories(this.state.limit)
   }
 
   refreshing(limit){
-    console.log("refresh, limit", limit )
+    //console.log("refresh, limit", limit )
     const newNum = 1
     this.setState({num: newNum, item: {}, itemsArr: []})
     if (limit) this.getListOfBestStories(limit)
@@ -89,7 +89,7 @@ class App extends Component {
     const newLimit = this.state.limit > 20
                       ? this.state.limit - 20
                       : this.state.limit
-    console.log("prev",newLimit)
+    //console.log("prev",newLimit)
     this.setState({limit: newLimit })
     this.refreshing(newLimit)
   }
