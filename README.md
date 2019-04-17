@@ -6,5 +6,6 @@ Na zadatku se vidi:
 - Da bi se vratili na prethodno stanje, klikne se dugme "prev"
 - Automatski osvezava listu postova na svakih 30 sekundi
 - Osvezava listu klikom na "refresh" dugme u Headeru
+- Responsive design
 - Link ka Useru otvara userovu stranicu na Hacker News sajtu u novom tabu
 - Link ka Comments otvara komentare vezane za taj post na Hacker News sajtu u novom tabu
