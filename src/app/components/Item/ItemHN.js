@@ -1,6 +1,6 @@
 import React from 'react'
 import Time from './time'
-import { ItemBox, Gray, TitleBox, Row, Bold, Description, LineInItem } from './itemStyle'
+import { ItemBox, Gray, TitleBox, Row, Bold, Description, LineInItem, Link } from './itemStyle'
 
 const NumberOfComments = ({kids}) => {
     let length=0
@@ -22,14 +22,14 @@ const ItemHN = ({item, itemID, userID}) => {
                 <Description>
                     {`${item.score} points `} 
                     <Gray>by</Gray>
-                    <a target="_blank" href={`https://news.ycombinator.com/user?id=${userID}`}>
+                    <Link target="_blank" href={`https://news.ycombinator.com/user?id=${userID}`}>
                         {` ${item.by} `}
-                    </a>
+                    </Link>
                     <Gray><Time time={item.time}/></Gray>
                     <LineInItem>|</LineInItem>
-                    <a target="_blank" href={`https://news.ycombinator.com/item?id=${itemID}`}>
+                    <Link target="_blank" href={`https://news.ycombinator.com/item?id=${itemID}`}>
                         <NumberOfComments kids={item.kids}/> comments
-                    </a> 
+                    </Link>
                 </Description>                
             </Row>
         </ItemBox>

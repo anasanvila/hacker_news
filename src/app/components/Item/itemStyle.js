@@ -34,3 +34,10 @@ export const LineInItem = styled.span`
     margin-right:5px;
     color: #ccc;
 `
+export const Link = styled.a`
+    color:black;
+    text-decoration:none;
+    &:hover {
+        color:#ccc;
+    }
+`

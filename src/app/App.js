@@ -5,6 +5,7 @@ import FooterHN from './components/Footer/FooterHN'
 import axios from 'axios'
 import { MainBox } from './AppStyle'
 import './App.css';
+import {LISTURL, ITEMURL} from './constants'
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends Component {
   }
 
   getListOfBestStories(limit){
-    axios.get(`https:/hacker-news.firebaseio.com/v0/beststories.json?print=pretty&orderBy="$key"&limitToFirst=${limit}`,
+    axios.get(`${LISTURL}?print=pretty&orderBy="$key"&limitToFirst=${limit}`,
     {
       headers: {        
           "X-RapidAPI-Host": "community-hacker-news-v1.p.rapidapi.com",         "X-RapidAPI-Key": "20bf02c64bmshe1a7544480fd5c4p1348a6jsne490756e066e",
@@ -36,7 +37,7 @@ class App extends Component {
   }
 
   getItem(id){
-    axios.get(`https:/hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`,
+    axios.get(`${ITEMURL}${id}.json?print=pretty`,
     {
       headers: {        
           "X-RapidAPI-Host": "community-hacker-news-v1.p.rapidapi.com",
@@ -70,16 +71,13 @@ class App extends Component {
     clearInterval(this.state.interval)
   }
 
-  refresh(){
-    //console.log("this.state.limit", this.state.limit)
-    //console.log("refreshing")
+  refresh(){    
     const newNum = 1
     this.setState({num: newNum, item: {}, itemsArr: []})
     this.getListOfBestStories(this.state.limit)
   }
 
   refreshing(limit){
-    //console.log("refresh, limit", limit )
     const newNum = 1
     this.setState({num: newNum, item: {}, itemsArr: []})
     if (limit) this.getListOfBestStories(limit)
@@ -89,7 +87,6 @@ class App extends Component {
     const newLimit = this.state.limit > 20
                       ? this.state.limit - 20
                       : this.state.limit
-    //console.log("prev",newLimit)
     this.setState({limit: newLimit })
     this.refreshing(newLimit)
   }
