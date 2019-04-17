@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   getListOfBestStories(){
-    axios.get('https:/hacker-news.firebaseio.com/v0/beststories.json?print=pretty&orderBy="$key"&limitToFirst=3',
+    axios.get('https:/hacker-news.firebaseio.com/v0/beststories.json?print=pretty&orderBy="$key"&limitToFirst=20',
     {
       headers: {        
           "X-RapidAPI-Host": "community-hacker-news-v1.p.rapidapi.com",         "X-RapidAPI-Key": "20bf02c64bmshe1a7544480fd5c4p1348a6jsne490756e066e",
@@ -52,11 +52,7 @@ class App extends Component {
   }
 
   createItemsArray(idArray){
-    this.getItem(19666991)
-    this.getItem(19666990)
-    this.getItem(19672436)
-
-    console.log("item", this.state.item)
+    idArray.forEach(id=>this.getItem(id))
     let itemsArray = []
     this.setState({itemsArr: itemsArray})
   }
