@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ItemBox = styled.div`
     background-color: white;
-    margin: 0 1px 0 15px;
+    margin: 0 15px 0 15px;
     padding:10px 25px 8px 25px;
     border-bottom: 1px solid #ededed; 
 `

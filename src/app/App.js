@@ -46,15 +46,12 @@ class App extends Component {
       if (newItem.score===undefined) newItem.score="No"
       const itemsArr = [...this.state.itemsArr]
       itemsArr.push(newItem)
-      this.setState({ num: newNum, itemsArr })
-      
+      this.setState({ num: newNum, itemsArr })      
     });
   }
 
   createItemsArray(idArray){
     idArray.forEach(id=>this.getItem(id))
-    let itemsArray = []
-    this.setState({itemsArr: itemsArray})
   }
 
   componentDidMount() {
