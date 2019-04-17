@@ -13,11 +13,15 @@ class App extends Component {
       item: {},
       itemsArr: [],
       num: 1,
+      limit: 20,
     }
+    this.prev = this.prev.bind(this)
+    this.more = this.more.bind(this)
+    this.refresh = this.refresh.bind(this)
   }
 
-  getListOfBestStories(){
-    axios.get('https:/hacker-news.firebaseio.com/v0/beststories.json?print=pretty&orderBy="$key"&limitToFirst=20',
+  getListOfBestStories(limit){
+    axios.get(`https:/hacker-news.firebaseio.com/v0/beststories.json?print=pretty&orderBy="$key"&limitToFirst=${limit}`,
     {
       headers: {        
           "X-RapidAPI-Host": "community-hacker-news-v1.p.rapidapi.com",         "X-RapidAPI-Key": "20bf02c64bmshe1a7544480fd5c4p1348a6jsne490756e066e",
@@ -55,23 +59,33 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getListOfBestStories()
+    this.getListOfBestStories(this.state.limit)
   }
 
-  refresh(){
-    console.log("refresh")
+  refresh(limit){
+    console.log("refresh, limit", limit )
+    const newNum = 1
+    this.setState({num: newNum, item: {}, itemsArr: []})
+    this.getListOfBestStories(limit)
   }
   
   prev() {
-    console.log("prev")
+    const newLimit = this.state.limit > 20
+                      ? this.state.limit - 20
+                      : this.state.limit
+    console.log("prev",newLimit)
+    this.setState({limit: newLimit })
+    this.refresh(newLimit)
   }
 
   more() {
-    console.log("more")
+    const newLimit = this.state.limit + 20
+    this.setState({limit: newLimit })
+    this.refresh(newLimit)
   }
   
   render() {
-    {console.log(this.state.listID)}
+    //{console.log(this.state.listID)}
     return (
       <MainBox>
         <HeaderHN refresh={this.refresh} />
