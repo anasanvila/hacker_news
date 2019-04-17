@@ -101,17 +101,12 @@ class App extends Component {
   }
   
   render() {
-    //{console.log(this.state.listID)}    
     return (
-      // <div className="App">
-      //   <header className="App-header">
           <MainBox>
             <HeaderHN refresh={this.refresh} />
             <ListItemsHN itemsArr={this.state.itemsArr} />
             <FooterHN prev={this.prev} more={this.more}/>
           </MainBox>
-      //   </header>
-      // </div>
     );
   }
 }
