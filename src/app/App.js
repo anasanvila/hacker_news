@@ -4,6 +4,7 @@ import ListItemsHN from './components/ListItems/ListItemsHN'
 import FooterHN from './components/Footer/FooterHN'
 import axios from 'axios'
 import { MainBox } from './AppStyle'
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -62,11 +63,18 @@ class App extends Component {
     this.getListOfBestStories(this.state.limit)
   }
 
-  refresh(limit){
+  refresh(){
+    console.log("this.state.limit", this.state.limit)
+    const newNum = 1
+    this.setState({num: newNum, item: {}, itemsArr: []})
+    this.getListOfBestStories(this.state.limit)
+  }
+
+  refreshing(limit){
     console.log("refresh, limit", limit )
     const newNum = 1
     this.setState({num: newNum, item: {}, itemsArr: []})
-    this.getListOfBestStories(limit)
+    if (limit) this.getListOfBestStories(limit)
   }
   
   prev() {
@@ -75,23 +83,27 @@ class App extends Component {
                       : this.state.limit
     console.log("prev",newLimit)
     this.setState({limit: newLimit })
-    this.refresh(newLimit)
+    this.refreshing(newLimit)
   }
 
   more() {
     const newLimit = this.state.limit + 20
     this.setState({limit: newLimit })
-    this.refresh(newLimit)
+    this.refreshing(newLimit)
   }
   
   render() {
     //{console.log(this.state.listID)}
     return (
-      <MainBox>
-        <HeaderHN refresh={this.refresh} />
-        <ListItemsHN itemsArr={this.state.itemsArr}/>
-        <FooterHN prev={this.prev} more={this.more}/>
-      </MainBox>
+      // <div className="App">
+      //   <header className="App-header">
+          <MainBox>
+            <HeaderHN refresh={this.refresh} />
+            <ListItemsHN itemsArr={this.state.itemsArr}/>
+            <FooterHN prev={this.prev} more={this.more}/>
+          </MainBox>
+      //   </header>
+      // </div>
     );
   }
 }
