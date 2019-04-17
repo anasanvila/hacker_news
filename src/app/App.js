@@ -9,28 +9,28 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [],
+      listID: [],
       item: {},
       itemsArr: [],
+      num: 1,
     }
   }
 
   getListOfBestStories(){
-    axios.get('https:/hacker-news.firebaseio.com/v0/beststories.json?print=pretty&orderBy="$key"&limitToFirst=20',
+    axios.get('https:/hacker-news.firebaseio.com/v0/beststories.json?print=pretty&orderBy="$key"&limitToFirst=3',
     {
       headers: {        
-          "X-RapidAPI-Host": "community-hacker-news-v1.p.rapidapi.com",
-          "X-RapidAPI-Key": "20bf02c64bmshe1a7544480fd5c4p1348a6jsne490756e066e",
+          "X-RapidAPI-Host": "community-hacker-news-v1.p.rapidapi.com",         "X-RapidAPI-Key": "20bf02c64bmshe1a7544480fd5c4p1348a6jsne490756e066e",
           "Content-Type": "application/x-www-form-urlencoded"
       }
     }).then(result=>{
-      this.setState({ data: result.data })
+      this.setState({ listID: result.data })
       this.createItemsArray(result.data)
     });
   }
 
-  getItem(){
-    axios.get('https:/hacker-news.firebaseio.com/v0/item/8863.json?print=pretty',
+  getItem(id){
+    axios.get(`https:/hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`,
     {
       headers: {        
           "X-RapidAPI-Host": "community-hacker-news-v1.p.rapidapi.com",
@@ -38,37 +38,31 @@ class App extends Component {
           "Content-Type": "application/x-www-form-urlencoded"
       }
     }).then(result=>{
-      this.setState({ item: result.data })
+      let newItem = {...result.data}
+      newItem.key=this.state.num
+      const newNum=this.state.num+1
+      if (newItem.title===undefined) newItem.title="No Title"
+      if (newItem.url===undefined) newItem.url="No Url"
+      if (newItem.score===undefined) newItem.score="No"
+      const itemsArr = [...this.state.itemsArr]
+      itemsArr.push(newItem)
+      this.setState({ num: newNum, itemsArr })
+      
     });
   }
 
-  createItemsArray(data){
-    let itemsArray = [{
-      key: 1,
-      id: 8863,
-      by: "justin",
-      score: 21,
-      kids: [8952, 9224, 8917],
-      time: 1210981217,
-      title: "Justin.tv is biggest",
-      url: "lwn.net",
-    }, 
-    {
-      key: 5,
-      id: 8863,
-      by: "ana",
-      score: 30,
-      kids: [8952, 9224, 8917],
-      time: 1314211127,
-      title: "Anna.tv is better",
-      url: "lwn.net",
-    }]
+  createItemsArray(idArray){
+    this.getItem(19666991)
+    this.getItem(19666990)
+    this.getItem(19672436)
+
+    console.log("item", this.state.item)
+    let itemsArray = []
     this.setState({itemsArr: itemsArray})
   }
 
   componentDidMount() {
-    this.getListOfBestStories()    
-    this.getItem()
+    this.getListOfBestStories()
   }
 
   refresh(){
@@ -84,7 +78,7 @@ class App extends Component {
   }
   
   render() {
-
+    {console.log(this.state.listID)}
     return (
       <MainBox>
         <HeaderHN refresh={this.refresh} />

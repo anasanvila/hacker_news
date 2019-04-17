@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ItemBox = styled.div`
     background-color: white;
     margin: 0 1px 0 15px;
-    padding:10px 25px 15px 25px;
+    padding:10px 25px 8px 25px;
     border-bottom: 1px solid #ededed; 
 `
 export const Gray = styled.span`
@@ -18,6 +18,7 @@ export const Row = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    padding-bottom:5px;
 `
 export const Bold = styled.span`
     font-weight:500;
